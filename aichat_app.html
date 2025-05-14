@@ -1048,6 +1048,13 @@
       // 在实际生产环境中，这应该通过后端API验证
       if ((username === 'admin' && password === 'admin123') || 
           (username === 'user' && password === 'user123')) {
+        loginPage.style.display = 'none';
+        appContainer.style.display = 'grid';
+        // 在这里可以添加初始化应用或加载用户数据的逻辑
+        // initializeApplication(); // 假设存在或将创建此函数
+        loadUserData(); // 加载用户数据
+        renderUI(); // 渲染UI
+        navigateTo(appState.currentPage); // 导航到默认或上次的页面
         // 更新用户名
         userData.name = username;
         document.querySelector('.user-name').textContent = username;
