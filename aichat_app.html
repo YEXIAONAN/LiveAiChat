@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,7 +129,7 @@
       height: 100vh;
       grid-template-columns: 280px 1fr;
       grid-template-rows: 60px 1fr;
-      grid-template-areas: 
+      grid-template-areas:
         "sidebar header"
         "sidebar main";
     }
@@ -612,15 +613,15 @@
       border-radius: 50%;
     }
 
-    .toggle-switch input:checked + .toggle-slider {
+    .toggle-switch input:checked+.toggle-slider {
       background-color: var(--primary);
     }
 
-    .toggle-switch input:focus + .toggle-slider {
+    .toggle-switch input:focus+.toggle-slider {
       box-shadow: 0 0 1px var(--primary);
     }
 
-    .toggle-switch input:checked + .toggle-slider:before {
+    .toggle-switch input:checked+.toggle-slider:before {
       transform: translateX(26px);
     }
 
@@ -646,6 +647,7 @@
         opacity: 0;
         transform: translateY(10px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -656,9 +658,11 @@
       0% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
+
       100% {
         transform: scale(1);
       }
@@ -714,16 +718,33 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: translateX(-5px);
+      }
+
+      20%,
+      40%,
+      60%,
+      80% {
+        transform: translateX(5px);
+      }
     }
 
     /* 响应式样式 */
     @media (max-width: 768px) {
       .app-container {
         grid-template-columns: 1fr;
-        grid-template-areas: 
+        grid-template-areas:
           "header"
           "main";
       }
@@ -751,6 +772,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- 登录页面 -->
   <div class="login-container" id="loginPage">
@@ -896,7 +918,7 @@
             <h2 class="settings-title">设置</h2>
             <p class="settings-description">管理你的个人信息和应用偏好</p>
           </div>
-          
+
           <div class="settings-section">
             <div class="settings-section-header">
               <h3 class="settings-section-title">个人资料</h3>
@@ -912,7 +934,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="settings-section">
             <div class="settings-section-header">
               <h3 class="settings-section-title">API 设置</h3>
@@ -921,7 +943,8 @@
               <div class="form-group">
                 <label for="apiKey">API 密钥</label>
                 <input type="password" id="apiKey" placeholder="输入你的 API 密钥" autocomplete="off">
-                <small style="display: block; margin-top: 0.5rem; color: var(--gray);">输入你的AI服务提供商API密钥，例如OpenAI、Anthropic或Google的API密钥</small>
+                <small
+                  style="display: block; margin-top: 0.5rem; color: var(--gray);">输入你的AI服务提供商API密钥，例如OpenAI、Anthropic或Google的API密钥</small>
               </div>
             </div>
             <div class="form-grid">
@@ -939,11 +962,12 @@
                 <label for="temperature">温度 (0-1)</label>
                 <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7">
                 <span id="temperatureValue">0.7</span>
-                <small style="display: block; margin-top: 0.5rem; color: var(--gray);">较低的值使回答更确定，较高的值使回答更多样化和创造性</small>
+                <small
+                  style="display: block; margin-top: 0.5rem; color: var(--gray);">较低的值使回答更确定，较高的值使回答更多样化和创造性</small>
               </div>
             </div>
           </div>
-          
+
           <div class="settings-section">
             <div class="settings-section-header">
               <h3 class="settings-section-title">界面设置</h3>
@@ -971,7 +995,7 @@
               </div>
             </div>
           </div>
-          
+
           <button class="save-btn">保存设置</button>
         </div>
       </div>
@@ -995,7 +1019,7 @@
     const modelOptions = document.getElementById('modelOptions');
     const chatList = document.getElementById('chatList');
     const userProfile = document.getElementById('userProfile');
-    
+
     // 用户数据
     let userData = {
       name: "John Doe",
@@ -1006,7 +1030,7 @@
       darkMode: false,
       autoSave: true
     };
-    
+
     // 应用状态
     let appState = {
       currentPage: "chatPage",
@@ -1019,7 +1043,7 @@
             {
               role: "assistant",
               content: "你好！👋 我是AI助手，有什么我可以帮助你的吗？\n\n你可以询问我各种问题，我会尽力为你提供有用的信息和建议。无论是工作、学习还是生活中的疑问，都可以向我咨询。",
-              timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+              timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             }
           ]
         },
@@ -1035,19 +1059,19 @@
         }
       ]
     };
-    
+
     // 登录功能
-    loginForm.addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', function (e) {
       e.preventDefault();
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
-      
+
       // 默认用户名和密码
       // 用户名: admin, 密码: admin123
       // 用户名: user, 密码: user123
       // 在实际生产环境中，这应该通过后端API验证
-      if ((username === 'admin' && password === 'admin123') || 
-          (username === 'user' && password === 'user123')) {
+      if ((username === 'admin' && password === 'admin123') ||
+        (username === 'user' && password === 'user123')) {
         loginPage.style.display = 'none';
         appContainer.style.display = 'grid';
         // 在这里可以添加初始化应用或加载用户数据的逻辑
@@ -1059,16 +1083,16 @@
         userData.name = username;
         document.querySelector('.user-name').textContent = username;
         document.querySelector('.user-avatar').textContent = username.substring(0, 2).toUpperCase();
-        
+
         // 显示动画
         loginPage.style.opacity = '0';
         loginPage.style.transform = 'translateY(-20px)';
-        
+
         // 延迟后切换页面
         setTimeout(() => {
           loginPage.style.display = 'none';
           appContainer.style.display = 'grid';
-          
+
           // 触发进入动画
           setTimeout(() => {
             sidebar.style.transform = 'translateX(0)';
@@ -1085,15 +1109,15 @@
         errorMessage.style.color = 'var(--danger)';
         errorMessage.style.marginTop = '1rem';
         errorMessage.style.fontSize = '0.875rem';
-        
+
         // 移除任何现有的错误消息
         const existingError = document.querySelector('.login-error');
         if (existingError) {
           loginForm.removeChild(existingError);
         }
-        
+
         loginForm.appendChild(errorMessage);
-        
+
         // 抖动动画
         const loginCard = document.querySelector('.login-card');
         loginCard.style.animation = 'none';
@@ -1102,32 +1126,32 @@
         }, 10);
       }
     });
-    
+
     // 侧边栏菜单切换
-    menuToggle.addEventListener('click', function() {
+    menuToggle.addEventListener('click', function () {
       sidebar.classList.toggle('open');
     });
-    
+
     // 导航链接点击
     navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
+      link.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         // 更新活动导航链接
         navLinks.forEach(item => item.classList.remove('active'));
         this.classList.add('active');
-        
+
         // 获取页面ID
         const pageId = this.getAttribute('data-page');
         appState.currentPage = pageId;
-        
+
         // 更新页面标题
         if (pageId === 'chatPage') {
           pageTitle.textContent = 'AI对话';
         } else if (pageId === 'settingsPage') {
           pageTitle.textContent = '设置';
         }
-        
+
         // 显示对应内容
         contentPages.forEach(page => {
           page.classList.remove('active');
@@ -1135,19 +1159,19 @@
             page.classList.add('active');
           }
         });
-        
+
         // 在移动设备上关闭侧边栏
         if (window.innerWidth <= 768) {
           sidebar.classList.remove('open');
         }
       });
     });
-    
+
     // 聊天功能
-    chatInput.addEventListener('input', function() {
+    chatInput.addEventListener('input', function () {
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight) + 'px';
-      
+
       // 启用/禁用发送按钮
       if (this.value.trim()) {
         sendBtn.disabled = false;
@@ -1155,28 +1179,28 @@
         sendBtn.disabled = true;
       }
     });
-    
-    chatInput.addEventListener('keydown', function(e) {
+
+    chatInput.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' && !e.shiftKey && !sendBtn.disabled) {
         e.preventDefault();
         sendMessage();
       }
     });
-    
+
     sendBtn.addEventListener('click', sendMessage);
-    
+
     function sendMessage() {
       const message = chatInput.value.trim();
       if (!message) return;
-      
+
       // 添加用户消息
       addMessage('user', message);
-      
+
       // 清空输入框
       chatInput.value = '';
       chatInput.style.height = 'auto';
       sendBtn.disabled = true;
-      
+
       // 显示打字指示器
       const typingIndicator = document.createElement('div');
       typingIndicator.className = 'message ai typing';
@@ -1188,530 +1212,494 @@
           </div>
         </div>
       `;
-      chatMessages.appendChild(typingIndicator);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-      
-      // 获取当前选择的模型和API密钥
-      const model = userData.model;
-      const apiKey = userData.apiKey;
-      
-      if (!apiKey) {
-        // 如果未设置API密钥，提示用户
-        chatMessages.removeChild(typingIndicator);
-        addMessage('assistant', "请先在设置页面中配置您的API密钥，才能连接到AI大模型。");
-        
-        // 更新当前对话的标题
-        if (appState.chats[appState.currentChat].messages.length <= 1) {
-          const newTitle = message.substring(0, 10) + (message.length > 10 ? "..." : "");
-          appState.chats[appState.currentChat].title = newTitle;
-          updateChatList();
-        }
-        return;
-      }
-      
-      // 准备请求数据
-      let apiUrl, requestData, headers;
-      
-      // 根据不同的模型配置API请求
-      if (model.includes('gpt')) {
-        // OpenAI API配置
-        apiUrl = 'https://api.openai.com/v1/chat/completions';
-        requestData = {
-          model: model === 'gpt-4' ? 'gpt-4-turbo' : 'gpt-3.5-turbo',
-          messages: [
-            ...appState.chats[appState.currentChat].messages.map(msg => ({
-              role: msg.role,
-              content: msg.content
-            })),
-            { role: 'user', content: message }
-          ],
-          temperature: userData.temperature
-        };
-        headers = {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        };
-      } else if (model.includes('claude')) {
-        // Anthropic API配置
-        apiUrl = 'https://api.anthropic.com/v1/messages';
-        requestData = {
-          model: 'claude-3-opus-20240229',
-          messages: [
-            ...appState.chats[appState.currentChat].messages.map(msg => ({
-              role: msg.role,
-              content: msg.content
-            })),
-            { role: 'user', content: message }
-          ],
-          max_tokens: 1000,
-          temperature: userData.temperature
-        };
-        headers = {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01'
-        };
-      } else if (model.includes('gemini')) {
-        // Google Gemini API配置
-        const projectId = 'your-project-id'; // 通常从设置中获取
-        apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-        requestData = {
-          contents: [
-            {
-              parts: [
-                { text: message }
-              ]
-            }
-          ],
-          generationConfig: {
-            temperature: userData.temperature
-          }
-        };
-        headers = {
-          'Content-Type': 'application/json'
-        };
-      } else {
-        // 默认使用通用API格式
-        apiUrl = 'https://api.example.com/v1/completions';
-        requestData = {
-          model: model,
-          prompt: message,
-          temperature: userData.temperature
-        };
-        headers = {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        };
-      }
-      
-      // 发送API请求到AI大模型
-      try {
-        fetch(apiUrl, {
-          method: 'POST',
-          headers: headers,
-          body: JSON.stringify(requestData)
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`API响应错误: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          // 移除打字指示器
-          chatMessages.removeChild(typingIndicator);
-          
-          // 解析不同API的响应格式
-          let aiResponse = '';
-          if (model.includes('gpt')) {
-            aiResponse = data.choices[0].message.content;
-          } else if (model.includes('claude')) {
-            aiResponse = data.content[0].text;
-          } else if (model.includes('gemini')) {
-            aiResponse = data.candidates[0].content.parts[0].text;
-          } else if (data.choices && data.choices.length > 0) {
-            aiResponse = data.choices[0].text;
-          } else {
-            aiResponse = data.response || data.output || data.result || "API返回了结果，但格式无法解析。";
-          }
-          
-          // 添加AI响应到聊天
-          addMessage('assistant', aiResponse);
-          
-          // 更新当前对话的标题（取前10个字符）
-          if (appState.chats[appState.currentChat].messages.length <= 1) {
-            const newTitle = message.substring(0, 10) + (message.length > 10 ? "..." : "");
-            appState.chats[appState.currentChat].title = newTitle;
-            updateChatList();
-          }
-        })
-        .catch(error => {
-          console.error('API请求错误:', error);
-          
-          // 移除打字指示器
-          chatMessages.removeChild(typingIndicator);
-          
-          // 显示错误消息
-          addMessage('assistant', `调用AI模型时出错: ${error.message}。请检查您的API密钥和网络连接，然后重试。`);
-        });
-      } catch (error) {
-        console.error('请求准备错误:', error);
-        
-        // 移除打字指示器
-        chatMessages.removeChild(typingIndicator);
-        
-        // 显示错误消息
-        addMessage('assistant', `准备请求时出错: ${error.message}。请检查您的设置并重试。`);
-      }
+
+      // 添加样式到文档
+      const styleSheet = document.createElement('style');
+      styleSheet.textContent = darkModeStyles;
+      document.head.appendChild(styleSheet);
+  </script>
+  <script src="aichat_app.js"></script>
+  </head>
+</body>
+
+</html>
+chatMessages.appendChild(typingIndicator);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+
+// 获取当前选择的模型和API密钥
+const model = userData.model;
+const apiKey = userData.apiKey;
+
+if (!apiKey) {
+// 如果未设置API密钥，提示用户
+chatMessages.removeChild(typingIndicator);
+addMessage('assistant', "请先在设置页面中配置您的API密钥，才能连接到AI大模型。");
+
+// 更新当前对话的标题
+if (appState.chats[appState.currentChat].messages.length <= 1) { const newTitle=message.substring(0, 10) +
+  (message.length> 10 ? "..." : "");
+  appState.chats[appState.currentChat].title = newTitle;
+  updateChatList();
+  }
+  return;
+  }
+
+  // 准备请求数据
+  let apiUrl, requestData, headers;
+
+  // 根据不同的模型配置API请求
+  if (model.includes('gpt')) {
+  // OpenAI API配置
+  apiUrl = 'https://api.openai.com/v1/chat/completions';
+  requestData = {
+  model: model === 'gpt-4' ? 'gpt-4-turbo' : 'gpt-3.5-turbo',
+  messages: [
+  ...appState.chats[appState.currentChat].messages.map(msg => ({
+  role: msg.role,
+  content: msg.content
+  })),
+  { role: 'user', content: message }
+  ],
+  temperature: userData.temperature
+  };
+  headers = {
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${apiKey}`
+  };
+  } else if (model.includes('claude')) {
+  // Anthropic API配置
+  apiUrl = 'https://api.anthropic.com/v1/messages';
+  requestData = {
+  model: 'claude-3-opus-20240229',
+  messages: [
+  ...appState.chats[appState.currentChat].messages.map(msg => ({
+  role: msg.role,
+  content: msg.content
+  })),
+  { role: 'user', content: message }
+  ],
+  max_tokens: 1000,
+  temperature: userData.temperature
+  };
+  headers = {
+  'Content-Type': 'application/json',
+  'x-api-key': apiKey,
+  'anthropic-version': '2023-06-01'
+  };
+  } else if (model.includes('gemini')) {
+  // Google Gemini API配置
+  const projectId = 'your-project-id'; // 通常从设置中获取
+  apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+  requestData = {
+  contents: [
+  {
+  parts: [
+  { text: message }
+  ]
+  }
+  ],
+  generationConfig: {
+  temperature: userData.temperature
+  }
+  };
+  headers = {
+  'Content-Type': 'application/json'
+  };
+  } else {
+  // 默认使用通用API格式
+  apiUrl = 'https://api.example.com/v1/completions';
+  requestData = {
+  model: model,
+  prompt: message,
+  temperature: userData.temperature
+  };
+  headers = {
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${apiKey}`
+  };
+  }
+
+  // 发送API请求到AI大模型
+  try {
+  fetch(apiUrl, {
+  method: 'POST',
+  headers: headers,
+  body: JSON.stringify(requestData)
+  })
+  .then(response => {
+  if (!response.ok) {
+  throw new Error(`API响应错误: ${response.status}`);
+  }
+  return response.json();
+  })
+  .then(data => {
+  // 移除打字指示器
+  chatMessages.removeChild(typingIndicator);
+
+  // 解析不同API的响应格式
+  let aiResponse = '';
+  if (model.includes('gpt')) {
+  aiResponse = data.choices[0].message.content;
+  } else if (model.includes('claude')) {
+  aiResponse = data.content[0].text;
+  } else if (model.includes('gemini')) {
+  aiResponse = data.candidates[0].content.parts[0].text;
+  } else if (data.choices && data.choices.length > 0) {
+  aiResponse = data.choices[0].text;
+  } else {
+  aiResponse = data.response || data.output || data.result || "API返回了结果，但格式无法解析。";
+  }
+
+  // 添加AI响应到聊天
+  addMessage('assistant', aiResponse);
+
+  // 更新当前对话的标题（取前10个字符）
+  if (appState.chats[appState.currentChat].messages.length <= 1) { const newTitle=message.substring(0, 10) +
+    (message.length> 10 ? "..." : "");
+    appState.chats[appState.currentChat].title = newTitle;
+    updateChatList();
     }
-    
+    })
+    .catch(error => {
+    console.error('API请求错误:', error);
+
+    // 移除打字指示器
+    chatMessages.removeChild(typingIndicator);
+
+    // 显示错误消息
+    addMessage('assistant', `调用AI模型时出错: ${error.message}。请检查您的API密钥和网络连接，然后重试。`);
+    });
+    } catch (error) {
+    console.error('请求准备错误:', error);
+
+    // 移除打字指示器
+    chatMessages.removeChild(typingIndicator);
+
+    // 显示错误消息
+    addMessage('assistant', `准备请求时出错: ${error.message}。请检查您的设置并重试。`);
+    }
+    }
+
     function addMessage(role, content) {
-      const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-      
-      // 更新数据
-      appState.chats[appState.currentChat].messages.push({
-        role: role,
-        content: content,
-        timestamp: timestamp
-      });
-      
-      // 创建消息元素
-      const messageEl = document.createElement('div');
-      messageEl.className = `message ${role}`;
-      
-      const avatarText = role === 'user' ? userData.name.substring(0, 2).toUpperCase() : 'AI';
-      
-      messageEl.innerHTML = `
-        <div class="message-avatar ${role}">${avatarText}</div>
-        <div class="message-content">
-          <div class="message-header">
-            <div class="message-name">${role === 'user' ? userData.name : 'AiChat 助手'}</div>
-            <div class="message-time">${timestamp}</div>
-          </div>
-          <div class="message-bubble">
-            <p>${content.replace(/\n/g, '<br>')}</p>
-          </div>
-          ${role === 'assistant' ? `
-          <div class="message-actions">
-            <button class="message-action">👍 赞</button>
-            <button class="message-action">👎 踩</button>
-            <button class="message-action">🔄 重新生成</button>
-            <button class="message-action">📋 复制</button>
-          </div>
-          ` : ''}
-        </div>
-      `;
-      
-      // 添加到聊天容器
-      chatMessages.appendChild(messageEl);
-      
-      // 滚动到底部
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-      
-      // 保存聊天记录（如果开启了自动保存）
-      if (userData.autoSave) {
-        saveChats();
-      }
+    const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+    // 更新数据
+    appState.chats[appState.currentChat].messages.push({
+    role: role,
+    content: content,
+    timestamp: timestamp
+    });
+
+    // 创建消息元素
+    const messageEl = document.createElement('div');
+    messageEl.className = `message ${role}`;
+
+    const avatarText = role === 'user' ? userData.name.substring(0, 2).toUpperCase() : 'AI';
+
+    messageEl.innerHTML = `
+    <div class="message-avatar ${role}">${avatarText}</div>
+    <div class="message-content">
+      <div class="message-header">
+        <div class="message-name">${role === 'user' ? userData.name : 'AiChat 助手'}</div>
+        <div class="message-time">${timestamp}</div>
+      </div>
+      <div class="message-bubble">
+        <p>${content.replace(/\n/g, '<br>')}</p>
+      </div>
+      ${role === 'assistant' ? `
+      <div class="message-actions">
+        <button class="message-action">👍 赞</button>
+        <button class="message-action">👎 踩</button>
+        <button class="message-action">🔄 重新生成</button>
+        <button class="message-action">📋 复制</button>
+      </div>
+      ` : ''}
+    </div>
+    `;
+
+    // 添加样式到文档
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = darkModeStyles;
+    document.head.appendChild(styleSheet);
+    </script>
+    <script src="aichat_app.js"></script>
+    </head>
+    </body>
+
+    </html>
+
+    // 添加到聊天容器
+    chatMessages.appendChild(messageEl);
+
+    // 滚动到底部
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // 保存聊天记录（如果开启了自动保存）
+    if (userData.autoSave) {
+    saveChats();
     }
-    
+    }
+
     // 聊天列表功能
     function updateChatList() {
-      // 清空现有列表
-      chatList.innerHTML = '';
-      
-      // 添加所有聊天
-      appState.chats.forEach((chat, index) => {
-        const chatItem = document.createElement('li');
-        chatItem.className = `chat-item ${index === appState.currentChat ? 'active' : ''}`;
-        chatItem.innerHTML = `
-          <span class="nav-icon">💬</span>
-          <span class="chat-item-title">${chat.title}</span>
-        `;
-        
-        // 点击切换聊天
-        chatItem.addEventListener('click', () => {
-          // 更新活动状态
-          document.querySelectorAll('.chat-item').forEach(item => item.classList.remove('active'));
-          chatItem.classList.add('active');
-          
-          // 切换到选中的聊天
-          appState.currentChat = index;
-          loadChat(index);
-        });
-        
-        chatList.appendChild(chatItem);
-      });
+    // 清空现有列表
+    chatList.innerHTML = '';
+
+    // 添加所有聊天
+    appState.chats.forEach((chat, index) => {
+    const chatItem = document.createElement('li');
+    chatItem.className = `chat-item ${index === appState.currentChat ? 'active' : ''}`;
+    chatItem.innerHTML = `
+    <span class="nav-icon">💬</span>
+    <span class="chat-item-title">${chat.title}</span>
+    `;
+
+    // 添加样式到文档
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = darkModeStyles;
+    document.head.appendChild(styleSheet);
+    </script>
+    <script src="aichat_app.js"></script>
+    </head>
+    </body>
+
+    </html>
+
+    // 点击切换聊天
+    chatItem.addEventListener('click', () => {
+    // 更新活动状态
+    document.querySelectorAll('.chat-item').forEach(item => item.classList.remove('active'));
+    chatItem.classList.add('active');
+
+    // 切换到选中的聊天
+    appState.currentChat = index;
+    loadChat(index);
+    });
+
+    chatList.appendChild(chatItem);
+    });
     }
-    
+
     function loadChat(index) {
-      // 清空聊天容器
-      chatMessages.innerHTML = '';
-      
-      // 加载聊天消息
-      const chat = appState.chats[index];
-      chat.messages.forEach(msg => {
-        const messageEl = document.createElement('div');
-        messageEl.className = `message ${msg.role}`;
-        
-        const avatarText = msg.role === 'user' ? userData.name.substring(0, 2).toUpperCase() : 'AI';
-        
-        messageEl.innerHTML = `
-          <div class="message-avatar ${msg.role}">${avatarText}</div>
-          <div class="message-content">
-            <div class="message-header">
-              <div class="message-name">${msg.role === 'user' ? userData.name : 'AiChat 助手'}</div>
-              <div class="message-time">${msg.timestamp}</div>
-            </div>
-            <div class="message-bubble">
-              <p>${msg.content.replace(/\n/g, '<br>')}</p>
-            </div>
-            ${msg.role === 'assistant' ? `
-            <div class="message-actions">
-              <button class="message-action">👍 赞</button>
-              <button class="message-action">👎 踩</button>
-              <button class="message-action">🔄 重新生成</button>
-              <button class="message-action">📋 复制</button>
-            </div>
-            ` : ''}
-          </div>
-        `;
-        
-        chatMessages.appendChild(messageEl);
-      });
-      
-      // 滚动到底部
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+    // 清空聊天容器
+    chatMessages.innerHTML = '';
+
+    // 加载聊天消息
+    const chat = appState.chats[index];
+    chat.messages.forEach(msg => {
+    const messageEl = document.createElement('div');
+    messageEl.className = `message ${msg.role}`;
+
+    const avatarText = msg.role === 'user' ? userData.name.substring(0, 2).toUpperCase() : 'AI';
+
+    messageEl.innerHTML = `
+    <div class="message-avatar ${msg.role}">${avatarText}</div>
+    <div class="message-content">
+      <div class="message-header">
+        <div class="message-name">${msg.role === 'user' ? userData.name : 'AiChat 助手'}</div>
+        <div class="message-time">${msg.timestamp}</div>
+      </div>
+      <div class="message-bubble">
+        <p>${msg.content.replace(/\n/g, '<br>')}</p>
+      </div>
+      ${msg.role === 'assistant' ? `
+      <div class="message-actions">
+        <button class="message-action">👍 赞</button>
+        <button class="message-action">👎 踩</button>
+        <button class="message-action">🔄 重新生成</button>
+        <button class="message-action">📋 复制</button>
+      </div>
+      ` : ''}
+    </div>
+    `;
+
+    // 添加样式到文档
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = darkModeStyles;
+    document.head.appendChild(styleSheet);
+    </script>
+    <script src="aichat_app.js"></script>
+    </head>
+    </body>
+
+    </html>
+
+    chatMessages.appendChild(messageEl);
+    });
+
+    // 滚动到底部
+    chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-    
+
     // 新建聊天
     document.querySelector('.new-chat-btn').addEventListener('click', () => {
-      // 创建新聊天
-      const newChat = {
-        id: Date.now(),
-        title: "新对话",
-        messages: []
-      };
-      
-      // 添加到聊天列表
-      appState.chats.unshift(newChat);
-      appState.currentChat = 0;
-      
-      // 更新UI
-      updateChatList();
-      loadChat(0);
-      
-      // 切换到聊天页面
-      navLinks.forEach(link => {
-        if (link.getAttribute('data-page') === 'chatPage') {
-          link.click();
-        }
-      });
+    // 创建新聊天
+    const newChat = {
+    id: Date.now(),
+    title: "新对话",
+    messages: []
+    };
+
+    // 添加到聊天列表
+    appState.chats.unshift(newChat);
+    appState.currentChat = 0;
+
+    // 更新UI
+    updateChatList();
+    loadChat(0);
+
+    // 切换到聊天页面
+    navLinks.forEach(link => {
+    if (link.getAttribute('data-page') === 'chatPage') {
+    link.click();
+    }
     });
-    
+    });
+
     // 模型选择
     modelSelect.addEventListener('click', function(e) {
-      e.stopPropagation();
-      modelOptions.style.display = modelOptions.style.display === 'block' ? 'none' : 'block';
+    e.stopPropagation();
+    modelOptions.style.display = modelOptions.style.display === 'block' ? 'none' : 'block';
     });
-    
+
     // 点击其他地方关闭模型选择
     document.addEventListener('click', function() {
-      modelOptions.style.display = 'none';
+    modelOptions.style.display = 'none';
     });
-    
+
     // 模型选项点击
     document.querySelectorAll('.model-option').forEach(option => {
-      option.addEventListener('click', function() {
-        // 更新活动状态
-        document.querySelectorAll('.model-option').forEach(item => item.classList.remove('active'));
-        this.classList.add('active');
-        
-        // 更新选中的模型
-        const modelName = this.textContent;
-        document.querySelector('.model-select-text').textContent = modelName;
-        
-        // 更新用户数据
-        userData.model = modelName.toLowerCase().replace(/\s+/g, '-');
-        
-        // 保存设置
-        saveUserData();
-      });
+    option.addEventListener('click', function() {
+    // 更新活动状态
+    document.querySelectorAll('.model-option').forEach(item => item.classList.remove('active'));
+    this.classList.add('active');
+
+    // 更新选中的模型
+    const modelName = this.textContent;
+    document.querySelector('.model-select-text').textContent = modelName;
+
+    // 更新用户数据
+    userData.model = modelName.toLowerCase().replace(/\s+/g, '-');
+
+    // 保存设置
+    saveUserData();
     });
-    
+    });
+
     // 设置页面功能
     document.getElementById('settingsName').addEventListener('change', function() {
-      userData.name = this.value;
-      document.querySelector('.user-name').textContent = this.value;
-      document.querySelector('.user-avatar').textContent = this.value.substring(0, 2).toUpperCase();
-      saveUserData();
+    userData.name = this.value;
+    document.querySelector('.user-name').textContent = this.value;
+    document.querySelector('.user-avatar').textContent = this.value.substring(0, 2).toUpperCase();
+    saveUserData();
     });
-    
+
     document.getElementById('settingsEmail').addEventListener('change', function() {
-      userData.email = this.value;
-      saveUserData();
+    userData.email = this.value;
+    saveUserData();
     });
-    
+
     document.getElementById('apiKey').addEventListener('change', function() {
-      userData.apiKey = this.value;
-      saveUserData();
+    userData.apiKey = this.value;
+    saveUserData();
     });
-    
+
     document.getElementById('apiModel').addEventListener('change', function() {
-      userData.model = this.value;
-      document.querySelector('.model-select-text').textContent = this.options[this.selectedIndex].text;
-      saveUserData();
+    userData.model = this.value;
+    document.querySelector('.model-select-text').textContent = this.options[this.selectedIndex].text;
+    saveUserData();
     });
-    
+
     document.getElementById('temperature').addEventListener('input', function() {
-      userData.temperature = parseFloat(this.value);
-      document.getElementById('temperatureValue').textContent = this.value;
-      saveUserData();
+    userData.temperature = parseFloat(this.value);
+    document.getElementById('temperatureValue').textContent = this.value;
+    saveUserData();
     });
-    
+
     document.getElementById('darkMode').addEventListener('change', function() {
-      userData.darkMode = this.checked;
-      if (this.checked) {
-        document.documentElement.classList.add('dark-mode');
-      } else {
-        document.documentElement.classList.remove('dark-mode');
-      }
-      saveUserData();
+    userData.darkMode = this.checked;
+    if (this.checked) {
+    document.documentElement.classList.add('dark-mode');
+    } else {
+    document.documentElement.classList.remove('dark-mode');
+    }
+    saveUserData();
     });
-    
+
     document.getElementById('autoSave').addEventListener('change', function() {
-      userData.autoSave = this.checked;
-      saveUserData();
+    userData.autoSave = this.checked;
+    saveUserData();
     });
-    
+
     document.querySelector('.save-btn').addEventListener('click', function() {
-      // 收集所有设置数据
-      userData.name = document.getElementById('settingsName').value;
-      userData.email = document.getElementById('settingsEmail').value;
-      userData.apiKey = document.getElementById('apiKey').value;
-      userData.model = document.getElementById('apiModel').value;
-      userData.temperature = parseFloat(document.getElementById('temperature').value);
-      userData.darkMode = document.getElementById('darkMode').checked;
-      userData.autoSave = document.getElementById('autoSave').checked;
-      
-      // 更新UI
-      document.querySelector('.user-name').textContent = userData.name;
-      document.querySelector('.user-avatar').textContent = userData.name.substring(0, 2).toUpperCase();
-      
-      // 保存设置
-      saveUserData();
-      
-      // 显示保存成功动画
-      this.textContent = '已保存';
-      this.style.backgroundColor = 'var(--success)';
-      
-      setTimeout(() => {
-        this.textContent = '保存设置';
-        this.style.backgroundColor = 'var(--primary)';
-      }, 2000);
+    // 收集所有设置数据
+    userData.name = document.getElementById('settingsName').value;
+    userData.email = document.getElementById('settingsEmail').value;
+    userData.apiKey = document.getElementById('apiKey').value;
+    userData.model = document.getElementById('apiModel').value;
+    userData.temperature = parseFloat(document.getElementById('temperature').value);
+    userData.darkMode = document.getElementById('darkMode').checked;
+    userData.autoSave = document.getElementById('autoSave').checked;
+
+    // 更新UI
+    document.querySelector('.user-name').textContent = userData.name;
+    document.querySelector('.user-avatar').textContent = userData.name.substring(0, 2).toUpperCase();
+
+    // 保存设置
+    saveUserData();
+
+    // 显示保存成功动画
+    this.textContent = '已保存';
+    this.style.backgroundColor = 'var(--success)';
+
+    setTimeout(() => {
+    this.textContent = '保存设置';
+    this.style.backgroundColor = 'var(--primary)';
+    }, 2000);
     });
-    
+
     // 数据持久化
     function saveUserData() {
-      localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem('userData', JSON.stringify(userData));
     }
-    
+
     function loadUserData() {
-      const saved = localStorage.getItem('userData');
-      if (saved) {
-        userData = JSON.parse(saved);
-        
-        // 更新UI
-        document.querySelector('.user-name').textContent = userData.name;
-        document.querySelector('.user-avatar').textContent = userData.name.substring(0, 2).toUpperCase();
-        document.getElementById('settingsName').value = userData.name;
-        document.getElementById('settingsEmail').value = userData.email;
-        document.getElementById('apiKey').value = userData.apiKey;
-        document.getElementById('apiModel').value = userData.model;
-        document.getElementById('temperature').value = userData.temperature;
-        document.getElementById('temperatureValue').textContent = userData.temperature;
-        document.getElementById('darkMode').checked = userData.darkMode;
-        document.getElementById('autoSave').checked = userData.autoSave;
-        document.querySelector('.model-select-text').textContent = document.querySelector(`#apiModel option[value="${userData.model}"]`).textContent;
-        
-        // 应用深色模式
-        if (userData.darkMode) {
-          document.documentElement.classList.add('dark-mode');
-        }
-      }
+    const saved = localStorage.getItem('userData');
+    if (saved) {
+    userData = JSON.parse(saved);
+
+    // 更新UI
+    document.querySelector('.user-name').textContent = userData.name;
+    document.querySelector('.user-avatar').textContent = userData.name.substring(0, 2).toUpperCase();
+    document.getElementById('settingsName').value = userData.name;
+    document.getElementById('settingsEmail').value = userData.email;
+    document.getElementById('apiKey').value = userData.apiKey;
+    document.getElementById('apiModel').value = userData.model;
+    document.getElementById('temperature').value = userData.temperature;
+    document.getElementById('temperatureValue').textContent = userData.temperature;
+    document.getElementById('darkMode').checked = userData.darkMode;
+    document.getElementById('autoSave').checked = userData.autoSave;
+    document.querySelector('.model-select-text').textContent = document.querySelector(`#apiModel
+    option[value="${userData.model}"]`).textContent;
+
+    // 应用深色模式
+    if (userData.darkMode) {
+    document.documentElement.classList.add('dark-mode');
     }
-    
+    }
+    }
+
     function saveChats() {
-      localStorage.setItem('chats', JSON.stringify(appState.chats));
+    localStorage.setItem('chats', JSON.stringify(appState.chats));
     }
-    
+
     function loadChats() {
-      const saved = localStorage.getItem('chats');
-      if (saved) {
-        appState.chats = JSON.parse(saved);
-        updateChatList();
-        loadChat(appState.currentChat);
-      }
+    const saved = localStorage.getItem('chats');
+    if (saved) {
+    appState.chats = JSON.parse(saved);
+    updateChatList();
+    loadChat(appState.currentChat);
     }
-    
-    // 添加深色模式样式
-    const darkModeStyles = `
-      :root.dark-mode {
-        --primary: #3b82f6;
-        --primary-light: #60a5fa;
-        --primary-dark: #2563eb;
-        --secondary: #1e3a8a;
-        --light: #0f172a;
-        --dark: #f8fafc;
-        --gray: #94a3b8;
-        --gray-light: #334155;
-        --text: #f1f5f9;
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-      }
-      
-      :root.dark-mode body {
-        background-color: var(--light);
-        color: var(--text);
-      }
-      
-      :root.dark-mode .sidebar,
-      :root.dark-mode .header,
-      :root.dark-mode .message-bubble,
-      :root.dark-mode .settings-section,
-      :root.dark-mode .chat-input,
-      :root.dark-mode input,
-      :root.dark-mode select {
-        background-color: #1e293b;
-        color: var(--text);
-        border-color: var(--gray-light);
-      }
-      
-      :root.dark-mode .sidebar-header,
-      :root.dark-mode .sidebar-footer {
-        border-color: var(--gray-light);
-      }
-      
-      :root.dark-mode .message.ai .message-bubble {
-        background-color: var(--secondary);
-      }
-      
-      :root.dark-mode .nav-link:hover,
-      :root.dark-mode .nav-link.active,
-      :root.dark-mode .chat-item:hover,
-      :root.dark-mode .chat-item.active {
-        background-color: #334155;
-      }
-      
-      :root.dark-mode .message-action:hover {
-        background-color: #334155;
-      }
-    `;
-    
-    // 添加深色模式样式到页面
-    const styleEl = document.createElement('style');
-    styleEl.textContent = darkModeStyles;
-    document.head.appendChild(styleEl);
-    
-    // 响应式处理
-    function handleResize() {
-      if (window.innerWidth <= 768) {
-        sidebar.classList.remove('open');
-      }
     }
-    
-    window.addEventListener('resize', handleResize);
-    
-    // 初始化
-    document.addEventListener('DOMContentLoaded', function() {
-      // 从本地存储加载用户数据
-      loadUserData();
-      
-      // 从本地存储加载聊天记录
-      loadChats();
-      
-      // 初始化聊天输入框
-      chatInput.focus();
-      sendBtn.disabled = true;
-      
-      // 处理窗口大小
-      handleResize();
-    });
+
+
